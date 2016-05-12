@@ -31,6 +31,7 @@ class MockPizzaServiceInstance : PizzaServiceInstance{
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             sleep(1)
+            print("Pizza's opgehaald")
             dispatch_async(dispatch_get_main_queue(), {
                 onSucces(pizzas)
             })
@@ -50,19 +51,34 @@ class MockPizzaServiceInstance : PizzaServiceInstance{
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             sleep(1)
+            print("Toppings opgehaald")
             dispatch_async(dispatch_get_main_queue(), {
                 onSucces(toppings)
             })
         }
     }
     
-    override func bestelPizza(pizza: Pizza, onCompletion: () -> Void) {
-        print("Pizza besteld")
+    override func bestelPizza(pizza: Pizza, onCompletion: (Int) -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             sleep(1)
+            print("Pizza besteld")
+            
+            // ID genereren
+            let id = Int(arc4random_uniform(3))
+            
             dispatch_async(dispatch_get_main_queue(), {
-                onCompletion()
+                onCompletion(id)
             })
         }
     }
+    
+    override func getProgress(orderID: Int, onProgress : (Int) -> Void) {
+        // Progressie opvragen op basis van ID
+        let progress = 50
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            onProgress(progress)
+        })
+    }
+    
 }

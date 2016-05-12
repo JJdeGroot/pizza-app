@@ -17,6 +17,7 @@ class BestellenViewController : UIViewController{
     @IBOutlet weak var nextButton: UIButton!
     
     var pizza : Pizza?
+    var bestellingID = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +28,12 @@ class BestellenViewController : UIViewController{
     private func bestelPizza(){
         //TODO: geef de bestelling door via de PizzaService
         
-        PizzaService.bestelPizza(self.pizza!, onCompletion:{
-            NSLog("Pizza is besteld")
-            //self.succesLabel.text = "Succes"
-            self.succesLabel.hidden = false;
+        PizzaService.bestelPizza(self.pizza!, onCompletion:{id in
             
+            NSLog("Pizza is besteld")
+            self.bestellingID = id;
+
+            self.succesLabel.hidden = false;
             self.nextButton.hidden = false;
         })
     }

@@ -16,11 +16,15 @@ class PizzaServiceInstance{
         
     }
     
-    func bestelPizza(pizza : Pizza, onCompletion : () -> Void){
+    func getToppings(onSucces : ([Topping]) -> Void){
         
     }
     
-    func getToppings(onSucces : ([Topping]) -> Void){
+    func bestelPizza(pizza : Pizza, onCompletion : (Int) -> Void){
+        
+    }
+    
+    func getProgress(orderID : Int, onProgress : (Int) -> Void) {
         
     }
 }
