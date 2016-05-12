@@ -17,3 +17,9 @@ class Topping {
         self.naam = naam
     }
 }
+
+extension Topping : Equatable {}
+
+func ==(t1: Topping, t2: Topping) -> Bool {
+    return t1.id == t2.id;
+}
