@@ -38,7 +38,7 @@ class ToppingsTableViewController : TableViewController{
         cell.textLabel?.text = topping.naam;
         
         //TODO: vinkje (= accessoryType) tonen
-        if !(self.pizza?.toppings.contains(topping))! {
+        if (self.pizza?.toppings.contains(topping))! {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         }else{
             cell.accessoryType = UITableViewCellAccessoryType.None
